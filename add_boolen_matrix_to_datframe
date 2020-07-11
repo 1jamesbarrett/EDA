@@ -1,0 +1,10 @@
+# based on python data sicence handbook
+import pandas as pd
+monte = pd.Series(['Graham Chapman', 'John Cleese', 'Terry Gilliam','Eric Idle', 'Terry Jones', 'Michael Palin'])
+full_monte = pd.DataFrame({'name': monte, 'info': ['B|C|D', 'B|D', 'A|C', 'B|D', 'B|C','B|C|D']})
+print(full_monte)
+# get_dummies() routine lets you quickly split out these indicator variables into a DataFrame:
+print("Dummies\n", full_monte['info'].str.get_dummies('|'))
+# add dummies into data frame
+full_monte_plus = full_monte.merge(full_monte['info'].str.get_dummies('|'), left_index=True, right_index=True)  # add boolen matrix to datframe
+print(full_monte_plus)
